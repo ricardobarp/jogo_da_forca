@@ -3,8 +3,14 @@
 
 int main() {
     int opcaoMenu = 0;
+    char nome[20];
 
-    menuPrincipal();
+    cabecalho();
+    printf("Informe seu nome:");
+    scanf("%s", nome);
+
+    menuPrincipal(nome);
+
     if(scanf("%d", &opcaoMenu)!=1){
         printf("Erro! Digite apenas números.\n");
         return 1;

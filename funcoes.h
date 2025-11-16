@@ -1,7 +1,8 @@
 #ifndef FUNCOES_H
 #define FUNCOES_H
 
-void menuPrincipal();
+void cabecalho();
+void menuPrincipal(char[20]);
 int sortearPalavra();
 void apresentarPalavra(int);
 
