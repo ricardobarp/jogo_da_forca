@@ -3,8 +3,12 @@
 #include <stdlib.h>
 #include "funcoes.h"
 
+#include <ctype.h>
+#include <string.h>
+
 char palavras[13][10] = {"CASA", "CACHORRO", "PAZ", "CARRO", "MESA", "LIVRO",
 "ANIMAL", "ESCOLA", "FLORES", "JANELA", "FRUTA", "CAMISA", "MUNDO"};
+char slots[20], palavraSorteada[20];
 
 void cabecalho() {
     printf("===== BEM-VINDO AO JOGO DA FORCA =====\n");
@@ -24,7 +28,7 @@ void menuPrincipal(char nome[20]) {
     printf("2 - Regras\n");
     printf("3 - Sobre\n");
     printf("4 - Sair\n");
-    printf("%s escolha uma opção: ", nome);
+    printf("%s, escolha uma opção: ", nome);
 }
 
 int sortearPalavra(){
@@ -33,6 +37,29 @@ int sortearPalavra(){
     return n;
 }
 
-void apresentarPalavra(int n){
-    printf("%s", palavras[n]);
+void slotsPalavraSorteada(int n){
+    for(int i = 0; palavras[n][i] != '\0'; i++) {
+        palavraSorteada[i] = palavras[n][i];
+    }
+    int tam = strlen(palavraSorteada);
+    for(int i = 0; i < tam; i++) {
+        slots[i] = '_';
+    }
+}
+
+void atualizarSlots(char letra) {
+    int tam = strlen(slots);
+    for (int i = 0; i < tam; i++) {
+        if (palavraSorteada[i] == letra) {
+            slots[i] = letra;
+        }
+    }
+}
+
+void mostrarSlots() {
+    int tam = strlen(slots);
+    for (int i = 0; i < tam; i++) {
+        printf("%c", slots[i]);
+    }
+    printf("\n");
 }
