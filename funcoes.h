@@ -5,7 +5,8 @@ void cabecalho();
 void menuPrincipal(char[20]);
 int sortearPalavra();
 void slotsPalavraSorteada(int);
-void atualizarSlots(char);
+int atualizarSlots(char);
 void mostrarSlots();
+void mostrarForca(int);
 
 #endif

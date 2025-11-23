@@ -47,13 +47,16 @@ void slotsPalavraSorteada(int n){
     }
 }
 
-void atualizarSlots(char letra) {
+int atualizarSlots(char letra) {
     int tam = strlen(slots);
+    int letrasCertas = 0;
     for (int i = 0; i < tam; i++) {
         if (palavraSorteada[i] == letra) {
             slots[i] = letra;
+            letrasCertas++;
         }
     }
+    return letrasCertas;
 }
 
 void mostrarSlots() {
@@ -62,4 +65,73 @@ void mostrarSlots() {
         printf("%c", slots[i]);
     }
     printf("\n");
+}
+
+void mostrarForca(int erros) {
+    switch (erros) {
+        case 0:
+            printf("\n");
+            printf("  _______\n");
+            printf(" |       |\n");
+            printf(" |        \n");
+            printf(" |        \n");
+            printf(" |        \n");
+            printf("_|_\n");
+            break;
+        case 1:
+            printf("\n");
+            printf("  _______\n");
+            printf(" |       |\n");
+            printf(" |       O\n");
+            printf(" |        \n");
+            printf(" |        \n");
+            printf("_|_\n");
+            break;
+        case 2:
+            printf("\n");
+            printf("  _______\n");
+            printf(" |       |\n");
+            printf(" |       O\n");
+            printf(" |       |\n");
+            printf(" |        \n");
+            printf("_|_\n");
+            break;
+        case 3:
+            printf("\n");
+            printf("  _______\n");
+            printf(" |       |\n");
+            printf(" |       O\n");
+            printf(" |      /|\n");
+            printf(" |        \n");
+            printf("_|_\n");
+            break;
+        case 4:
+            printf("\n");
+            printf("  _______\n");
+            printf(" |       |\n");
+            printf(" |       O\n");
+            printf(" |      /|\\\n");
+            printf(" |        \n");
+            printf("_|_\n");
+            break;
+        case 5:
+            printf("\n");
+            printf("  _______\n");
+            printf(" |       |\n");
+            printf(" |       O\n");
+            printf(" |      /|\\\n");
+            printf(" |      / \n");
+            printf("_|_\n");
+            break;
+        case 6:
+            printf("\n");
+            printf("  _______\n");
+            printf(" |       |\n");
+            printf(" |       O\n");
+            printf(" |      /|\\\n");
+            printf(" |      / \\\n");
+            printf("_|_\n");
+            printf("\nVOCÊ PERDEU\n");
+            break;
+    }
 }

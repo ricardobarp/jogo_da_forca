@@ -3,7 +3,7 @@
 #include "funcoes.h"
 
 int main() {
-    int opcaoMenu = 0;
+    int opcaoMenu = 0, erros = 0, acertos = 0, tentativa = 0;
     char nome[20], letra;
 
     cabecalho();
@@ -20,13 +20,31 @@ int main() {
     if(opcaoMenu == 1) {
         int n = sortearPalavra();
         slotsPalavraSorteada(n);
+        mostrarForca(erros);
+        printf("A palavra oculta é: ");
         mostrarSlots();
-        while (opcaoMenu == 1) { // Loop apenas para testar!
+
+        while (erros < 6) { // Loop apenas para testar!
             printf("%s, digite uma letra: ", nome);
             scanf(" %c", &letra);
             letra = toupper(letra);
-            atualizarSlots(letra);
-            mostrarSlots();
+            tentativa = atualizarSlots(letra);
+            if(tentativa > 0) {
+                acertos++;
+                printf("\nParabéns %s, você acertou! :D", nome);
+                mostrarForca(erros);
+                printf("A palavra oculta é: ");
+                mostrarSlots();
+                continue;
+            }
+            if (tentativa == 0) {
+                erros++;
+                printf("\nPoxa %s, não foi desta vez :C", nome);
+                mostrarForca(erros);
+                printf("A palavra oculta é: ");
+                mostrarSlots();
+            }
+
         }
     }
 
