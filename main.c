@@ -60,11 +60,18 @@ int main() {
                 printf("\nPoxa %s, não foi desta vez :C", nome);
                 erros++;
                 mostrarForca(erros);
-                printf("A palavra oculta é: ");
-                mostrarSlots();
+                if (erros < 6) {
+                    printf("A palavra oculta é: ");
+                    mostrarSlots();
+                }
                 tentativas++;
             }
 
+        }
+        //Se o jogador perder o jogo a palavra oculta é revelada
+        if (erros == 6) {
+            printf("A palavra oculta era: ");
+            mostrarPalavraSorteada();
         }
     }
 

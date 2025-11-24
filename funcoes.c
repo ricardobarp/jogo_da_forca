@@ -65,6 +65,13 @@ void mostrarSlots() {
     printf("\n");
 }
 
+void mostrarPalavraSorteada() {
+    int tam = strlen(palavraSorteada);
+    for (int i = 0; i < tam; i++) {
+        printf("%c", palavraSorteada[i]);
+    }
+}
+
 void mostrarForca(int erros) {
     switch (erros) {
         case 0:

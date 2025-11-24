@@ -7,6 +7,7 @@ int sortearPalavra();
 void slotsPalavraSorteada(int);
 int atualizarSlots(char);
 void mostrarSlots();
+void mostrarPalavraSorteada();
 void mostrarForca(int);
 
 #endif
