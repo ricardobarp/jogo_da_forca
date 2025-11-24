@@ -2,8 +2,6 @@
 #include <time.h>
 #include <stdlib.h>
 #include "funcoes.h"
-
-#include <ctype.h>
 #include <string.h>
 
 char palavras[13][10] = {"CASA", "CACHORRO", "PAZ", "CARRO", "MESA", "LIVRO",
