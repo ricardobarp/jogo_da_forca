@@ -6,7 +6,7 @@
 
 char palavras[13][10] = {"CASA", "CACHORRO", "PAZ", "CARRO", "MESA", "LIVRO",
 "ANIMAL", "ESCOLA", "FLORES", "JANELA", "FRUTA", "CAMISA", "MUNDO"};
-char slots[20] = {0}, palavraSorteada[20] = {0};
+char slots[20] = {0}, palavraSorteada[20] = {0}, palavrasUsadas[13] = {0};
 
 void cabecalho() {
     printf("===== BEM-VINDO AO JOGO DA FORCA =====\n");
@@ -30,17 +30,36 @@ void menuPrincipal(char nome[20]) {
 }
 
 int sortearPalavra(){
-    srand(time(NULL));
-    int n = rand() % 13;
-    return n;
-}
+    int totalPalavras = 13;
+    int palavrasRestantes = 0;
 
-void slotsPalavraSorteada(int n){
+    for (int i = 0; i < totalPalavras; i++) {
+        if (!palavrasUsadas[i]) {
+            palavrasRestantes++;
+        }
+    }
+
+    if (palavrasRestantes == 0) {
+        return -1;
+    }
+
+    int n;
+    srand(time(NULL));
+    do {
+        n = rand() % totalPalavras;
+    } while (palavrasUsadas[n]);
+
+    palavrasUsadas[n] = 1;
+
     int i;
     for(i = 0; palavras[n][i] != '\0'; i++) {
         palavraSorteada[i] = palavras[n][i];
     }
     palavraSorteada[i] = '\0';
+    return 0;
+}
+
+void slotsPalavraSorteada(){
     int tam = strlen(palavraSorteada);
     for(int i = 0; i < tam; i++) {
         slots[i] = '_';

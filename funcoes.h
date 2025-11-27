@@ -4,7 +4,7 @@
 void cabecalho();
 void menuPrincipal(char[20]);
 int sortearPalavra();
-void slotsPalavraSorteada(int);
+void slotsPalavraSorteada();
 int atualizarSlots(char);
 void mostrarSlots();
 void mostrarPalavraSorteada();

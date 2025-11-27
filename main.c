@@ -5,7 +5,7 @@
 
 int main() {
     extern char palavraSorteada[], slots[];
-    int opcaoMenu = 0, erros = 0, acertos = 0, letraCorreta = 0, tentativas = 0, proximaFase = 1;
+    int opcaoMenu = 0, erros = 0, acertos = 0, letraCorreta = 0, tentativas = 0, proximaFase = 1, fases = 0;
     char nome[20], letra;
     char letraUsada[26] = {0};
 
@@ -28,8 +28,11 @@ int main() {
             for (int i = 0; i < 26; i++) {
                 letraUsada[i] = 0;
             }
-            int n = sortearPalavra();
-            slotsPalavraSorteada(n);
+            if (sortearPalavra() == -1) {
+                printf("%s, você venceu o jogo! Todas as palavras foram descobertas.\n", nome);
+                return 0;
+            }
+            slotsPalavraSorteada();
             mostrarForca(erros);
             printf("A palavra oculta é: ");
             mostrarSlots();
@@ -78,6 +81,7 @@ int main() {
                     mostrarSlots();
                     printf("\n1 - Continuar\n2 - Sair do Jogo\n%s, Escolha uma opção: ", nome);
                     scanf("%d", &proximaFase);
+                    fases++;
                     if (proximaFase == 2) {
                         return 0;
                     }
