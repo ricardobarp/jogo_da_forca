@@ -79,12 +79,27 @@ int main() {
                     printf("Parabéns, você descobriu a palavra oculta!\n");
                     printf("A palavra oculta era: ");
                     mostrarSlots();
-                    printf("\n1 - Continuar\n2 - Sair do Jogo\n%s, Escolha uma opção: ", nome);
-                    scanf("%d", &proximaFase);
-                    fases++;
-                    if (proximaFase == 2) {
-                        return 0;
-                    }
+                    do {
+                        printf("\n1 - Continuar\n2 - Sair do Jogo\n%s, escolha uma opção: ", nome);
+                        if (scanf("%d", &proximaFase) != 1) {
+                            getchar(); // limpar buffer
+                            printf("Entrada inválida! %s, escolha uma das opções abaixo.", nome);
+                            proximaFase = 0;
+                            continue;
+                        }
+                        if (proximaFase != 1 && proximaFase != 2) {
+                            printf("Entrada inválida! %s, escolha uma das opções abaixo.", nome);
+                            proximaFase = 0;
+                            continue;
+                        }
+                        if (proximaFase == 2) {
+                            printf("Saindo...");
+                            return 0;
+                        }
+                        printf("Indo para a próxima fase...");
+                        fases++;
+                    }while (proximaFase == 0);
+
                 }
                 if (letraCorreta == 0) {
                     printf("\nPoxa %s, não foi desta vez :C", nome);
