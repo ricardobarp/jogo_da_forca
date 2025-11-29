@@ -1,12 +1,12 @@
 #include <stdio.h>
-#include <time.h>
 #include <stdlib.h>
 #include "funcoes.h"
 #include <string.h>
 
 char palavras[13][10] = {"CASA", "CACHORRO", "PAZ", "CARRO", "MESA", "LIVRO",
 "ANIMAL", "ESCOLA", "FLORES", "JANELA", "FRUTA", "CAMISA", "MUNDO"};
-char slots[20] = {0}, palavraSorteada[20] = {0}, palavrasUsadas[13] = {0};
+char slots[20] = {0}, palavraSorteada[20] = {0};
+int palavrasUsadas[13] = {0};
 
 void cabecalho() {
     printf("===== BEM-VINDO AO JOGO DA FORCA =====\n");
@@ -16,7 +16,6 @@ void cabecalho() {
     printf("- Escolha uma letra. Se a letra existir na palavra, a letra será exibida.\n");
     printf("Se a letra não existir o bonequinho será desenhado\n");
     printf("- Você só pode errar 6 vezes a cada fase.\n");
-    printf("- Você pode tentar chutar uma palavra, mas se errar você perde o jogo.\n");
     printf("- Se a palavra oculta for descoberta, você passa de fase\n");
     printf("=====================================\n");
 }
@@ -25,7 +24,8 @@ void menuPrincipal(char nome[20]) {
     printf("1 - Jogar\n");
     printf("2 - Regras\n");
     printf("3 - Sobre\n");
-    printf("4 - Sair\n");
+    printf("4 - Mostrar palavras\n");
+    printf("5 - Sair\n");
     printf("%s, escolha uma opção: ", nome);
 }
 
@@ -44,7 +44,6 @@ int sortearPalavra(){
     }
 
     int n;
-    srand(time(NULL));
     do {
         n = rand() % totalPalavras;
     } while (palavrasUsadas[n]);
@@ -60,6 +59,10 @@ int sortearPalavra(){
 }
 
 void slotsPalavraSorteada(){
+    for (int i = 0; i < 20; i++) {
+        slots[i] = 0;
+    }
+
     int tam = strlen(palavraSorteada);
     for(int i = 0; i < tam; i++) {
         slots[i] = '_';
@@ -160,5 +163,14 @@ void mostrarForca(int erros) {
             printf("_|_\n");
             printf("\nVOCÊ PERDEU\n");
             break;
+    }
+}
+
+void listarPalavras() {
+    for (int i = 0; i < 13; i++) {
+        for (int j = 0; palavras[i][j] != '\0'; j++) {
+            printf("%c", palavras[i][j]);
+        }
+        printf(" ");
     }
 }

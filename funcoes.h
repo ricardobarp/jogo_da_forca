@@ -9,5 +9,6 @@ int atualizarSlots(char);
 void mostrarSlots();
 void mostrarPalavraSorteada();
 void mostrarForca(int);
+void listarPalavras();
 
 #endif
