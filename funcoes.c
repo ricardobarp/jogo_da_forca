@@ -3,20 +3,16 @@
 #include "funcoes.h"
 #include <string.h>
 
-char palavras[13][10] = {"CASA", "CACHORRO", "PAZ", "CARRO", "MESA", "LIVRO",
-"ANIMAL", "ESCOLA", "FLORES", "JANELA", "FRUTA", "CAMISA", "MUNDO"};
-char slots[20] = {0}, palavraSorteada[20] = {0};
-int palavrasUsadas[13] = {0};
-
 void cabecalho() {
     printf("===== BEM-VINDO AO JOGO DA FORCA =====\n");
     printf("- O seu objetivo é descobrir a palavra oculta\n");
     printf("antes que o bonequinho fique completamente desenhado.\n");
     printf("Regras do jogo:\n");
     printf("- Escolha uma letra. Se a letra existir na palavra, a letra será exibida.\n");
-    printf("Se a letra não existir o bonequinho será desenhado\n");
+    printf("Se a letra não existir o bonequinho será desenhado.\n");
     printf("- Você só pode errar 6 vezes a cada fase.\n");
-    printf("- Se a palavra oculta for descoberta, você passa de fase\n");
+    printf("- Você pode tentar chutar uma palavra, mas se errar você perde o jogo.\n");
+    printf("- Se a palavra oculta for descoberta, você passa de fase.\n");
     printf("=====================================\n");
 }
 
@@ -24,12 +20,11 @@ void menuPrincipal(char nome[20]) {
     printf("1 - Jogar\n");
     printf("2 - Regras\n");
     printf("3 - Sobre\n");
-    printf("4 - Mostrar palavras\n");
-    printf("5 - Sair\n");
+    printf("4 - Sair\n");
     printf("%s, escolha uma opção: ", nome);
 }
 
-int sortearPalavra(){
+int sortearPalavra(char palavras[][10], int palavrasUsadas[], char palavraSorteada[]) {
     int totalPalavras = 13;
     int palavrasRestantes = 0;
 
@@ -58,7 +53,7 @@ int sortearPalavra(){
     return 0;
 }
 
-void slotsPalavraSorteada(){
+void slotsPalavraSorteada(char palavraSorteada[], char slots[]) {
     for (int i = 0; i < 20; i++) {
         slots[i] = 0;
     }
@@ -70,7 +65,7 @@ void slotsPalavraSorteada(){
     slots[tam] = '\0';
 }
 
-int atualizarSlots(char letra) {
+int atualizarSlots(char letra, char palavraSorteada[], char slots[]) {
     int tam = strlen(slots);
     int letrasCertas = 0;
     for (int i = 0; i < tam; i++) {
@@ -82,7 +77,7 @@ int atualizarSlots(char letra) {
     return letrasCertas;
 }
 
-void mostrarSlots() {
+void mostrarSlots(char slots[]) {
     int tam = strlen(slots);
     for (int i = 0; i < tam; i++) {
         printf("%c", slots[i]);
@@ -90,7 +85,7 @@ void mostrarSlots() {
     printf("\n");
 }
 
-void mostrarPalavraSorteada() {
+void mostrarPalavraSorteada(char palavraSorteada[]) {
     int tam = strlen(palavraSorteada);
     for (int i = 0; i < tam; i++) {
         printf("%c", palavraSorteada[i]);
@@ -163,14 +158,5 @@ void mostrarForca(int erros) {
             printf("_|_\n");
             printf("\nVOCÊ PERDEU\n");
             break;
-    }
-}
-
-void listarPalavras() {
-    for (int i = 0; i < 13; i++) {
-        for (int j = 0; palavras[i][j] != '\0'; j++) {
-            printf("%c", palavras[i][j]);
-        }
-        printf(" ");
     }
 }
