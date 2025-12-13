@@ -30,6 +30,7 @@ int main() {
         }
 
         if(opcaoMenu == 1) {
+            fases = 1;
             while (proximaFase == 1) { //Vai entrar neste while em todas as fases novas
                 while (passardeFase == 1) {
                     printf("\n1 - Continuar\n2 - Sair do Jogo\n%s, escolha uma opção: ", nome);
